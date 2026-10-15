@@ -15,7 +15,7 @@ const Config = struct {
 pub fn initRuntime(config: Config) RuntimeChameleon {
     return .{
         .allocator = config.allocator,
-        .no_color = if (!config.detect_no_color) false else std.process.hasEnvVarConstant("NO_COLOR"),
+        .no_color = if (!config.detect_no_color) false else (std.c.getenv("NO_COLOR") != null),
     };
 }
 
